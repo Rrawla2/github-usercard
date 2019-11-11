@@ -3,21 +3,26 @@
            https://api.github.com/users/<your name>
 */
 
-const entryPoint = document.querySelector(".cards");
+// const entryPoint = document.querySelector(".cards");
+//entryPoint.appendChild(newCard);
 
 axios
 .get("https://api.github.com/users/rrawla2")
   .then(response => {
     //console.log(response.data)
+    // response.data.forEach(item => {
     Object.entries(response.data).forEach(item => {
+      const entryPoint = document.querySelector('.cards');
       const newCard = createCard(item)
       entryPoint.appendChild(newCard);
+      //console.log(newCard)
       return newCard;
       })
-    })
+    
   .catch(error => {
     console.log('The data was not returned', error)
   })
+});
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -61,37 +66,37 @@ const followersArray = [];
 </div>
 
 */
-function createCard(object) {
+function createCard(newCard) {
 
   
 // create elements
 const card = document.createElement('div'),
-      img = document.createElement('img'),
-      cardInfo = document.createElement('div'),
-      name = document.createElement('h3'),
-      userName = document.createElement('p'),
-      location = document.createElement('p'),
-      profile = document.createElement('a'),
-      followers = document.createElement('p'),
-      following = document.createElement('p'),
-      bio = document.createElement('p');
+  img = document.createElement('img'),
+  cardInfo = document.createElement('div'),
+  name = document.createElement('h3'),
+  userName = document.createElement('p'),
+  location = document.createElement('p'),
+  profile = document.createElement('a'),
+  followers = document.createElement('p'),
+  following = document.createElement('p'),
+  bio = document.createElement('p');
 
 // assign to classes
 card.classList.add('card');
-cardInfo.classList.add('card-info')
-name.classList.add('name')
-userName.classList.add('username')
+cardInfo.classList.add('card-info');
+name.classList.add('name');
+userName.classList.add('username');
 
-  // assign the content
+// assign the content
 
-img.src = object.avatar_url;
-name.textContent = "name";
-userName.textContent = "login";
+img.src = 'avatar_url';
+name.textContent = 'name';
+userName.textContent = 'login';
 location.textContent = "location";
-profile.textContent = "html_url";
-followers.textContent = "followers";
-following.textContent = "following";
-bio.textContent = "bio";
+profile.textContent = 'html_url';
+followers.textContent = 'followers';
+following.textContent = 'following';
+bio.textContent = 'bio';
 
 // append child to parent element
 
