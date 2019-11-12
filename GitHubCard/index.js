@@ -40,7 +40,7 @@ axios
 */
 
 
-const followersArray = ['julieAntonia', "dreampoetlee", "bkoehler2016", "mtlovelace", "JRodDvlpr"];
+const followersArray = ['julieantonio', "dreampoetlee", "bkoehler2016", "mtlovelace", "JRodDvlpr"];
 
 for (let i = 0; i< followersArray.length; i++){
 axios.get('https://api.github.com/users/' + followersArray[i])
