@@ -4,17 +4,15 @@
 */
 
 const parent = document.querySelector('.cards');
+
+
 axios
 .get("https://api.github.com/users/rrawla2")
   .then(response => {
     //console.log(response.data)
-    response.data.forEach(item => {
-      let newCard = createCard(item);
-      parent.appendChild(newCard);
-      //return newCard;
+    let newCard = createCard(response.data);
+    parent.appendChild(newCard);
     })
-  })
-    
   .catch(error => {
     console.log('The data was not returned', error)
   })
@@ -41,7 +39,22 @@ axios
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+
+const followersArray = ['julieAntonia', "dreampoetlee", "bkoehler2016", "mtlovelace", "JRodDvlpr"];
+
+for (let i = 0; i< followersArray.length; i++){
+axios.get('https://api.github.com/users/' + followersArray[i])
+  .then((response) => {
+    console.log(response.data);
+    parent.append(createCard(response.data))
+  })
+
+  .catch(err => {
+    console.log(err);
+  })
+}
+
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -86,13 +99,13 @@ userName.classList.add('username');
 // assign the content
 
 img.src = newCard.avatar_url;
-name.textContent = newCard.name;
-userName.textContent = newCard.login;
-location.textContent = `Location: ${newCard.location}`;
-profile.textContent = `Profile: ${newCard.html_url}`;
-followers.textContent = `Followers: ${newCard.followers}`;
-following.textContent = `Following: ${newCard.following}`;
-bio.textContent = `Bio: ${newCard.bio}`;
+name.innerText = newCard.name;
+userName.innerText = newCard.login;
+location.innerText = `Location: ${newCard.location}`;
+profile.innerText = `Profile: ${newCard.html_url}`;
+followers.innerText = `Followers: ${newCard.followers}`;
+following.innerText = `Following: ${newCard.following}`;
+bio.innerText = `Bio: ${newCard.bio}`;
 
 // append child to parent element
 
